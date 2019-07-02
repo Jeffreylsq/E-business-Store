@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace：该XML文件对应哪个接口 -->
+<mapper namespace="cn.tedu.store.mapper.AddressMapper">
+
+                                                 <!--每次插入以后 注意是先插以后 aid都回被得到 放在参数对象address中 -->
+   <!-- 插入收货地址数据 -->
+    <!-- Integer insert(Address address) -->
+    <insert id="insert"
+        useGeneratedKeys="true"
+        keyProperty="aid">
+        INSERT INTO t_address (
+            uid, name,
+            province_code, province_name,
+            city_code, city_name,
+            area_code, area_name,
+            zip, address,
+            phone, tel,
+            tag, is_default,
+            created_user, created_time,
+            modified_user, modified_time
+        ) VALUES (
+            #{uid}, #{name},
+            #{provinceCode}, #{provinceName},
+            #{cityCode}, #{cityName},
+            #{areaCode}, #{areaName},
+            #{zip}, #{address},
+            #{phone}, #{tel},
+            #{tag}, #{isDefault},
+            #{createdUser}, #{createdTime},
+            #{modifiedUser}, #{modifiedTime}
+        )
+    </insert>
+     
+     <select id="countByUid" resultType = "java.lang.Integer">
+          
+          SELECT 
+              COUNT(*)
+          FROM
+              t_address
+           WHERE
+                uid=#{uid}
+             
+     
+     </select>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
